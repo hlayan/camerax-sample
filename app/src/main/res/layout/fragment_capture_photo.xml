@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".CapturePhotoFragment">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginBottom="32dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toTopOf="@id/btnSubmit"
+        app:layout_constraintDimensionRatio="295:193"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:strokeColor="@android:color/white"
+        app:strokeWidth="2dp">
+
+        <androidx.camera.view.PreviewView
+            android:id="@+id/previewView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivPreview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <FrameLayout
+        android:id="@+id/layoutTakePhoto"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_margin="32dp"
+        android:background="@drawable/bg_border_gray"
+        app:layout_constraintEnd_toEndOf="@id/cardView"
+        app:layout_constraintStart_toStartOf="@id/cardView"
+        app:layout_constraintTop_toBottomOf="@id/cardView">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTakePhoto"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            app:backgroundTint="@color/white"
+            app:icon="@drawable/ic_camera_glyph"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconSize="24dp"
+            app:iconTint="@color/black"
+            app:rippleColor="@color/black"
+            app:shapeAppearance="@style/ShapeAppearance.WaveMoney.Circle"
+            app:strokeWidth="0dp"
+            tools:ignore="ContentDescription" />
+
+    </FrameLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnFlash"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:padding="0dp"
+        app:backgroundTint="#1AFFFFFF"
+        app:icon="@drawable/ic_flash_on"
+        app:iconGravity="textStart"
+        app:iconPadding="0dp"
+        app:iconSize="16dp"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/layoutTakePhoto"
+        app:layout_constraintEnd_toStartOf="@id/layoutTakePhoto"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/layoutTakePhoto"
+        app:rippleColor="@color/white"
+        app:shapeAppearance="@style/ShapeAppearance.WaveMoney.Circle"
+        app:strokeWidth="0dp"
+        tools:ignore="ContentDescription" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSubmit"
+        style="@style/EkycGrayButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Submit"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/btnRetake"
+        app:layout_constraintEnd_toEndOf="@id/cardView"
+        app:layout_constraintStart_toStartOf="@id/cardView"
+        app:layout_constraintTop_toBottomOf="@id/cardView"
+        app:rippleColor="@color/ekyc_gray" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnRetake"
+        style="@style/EkycGrayButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Retake Photo"
+        app:backgroundTint="#BFFFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/cardView"
+        app:layout_constraintStart_toStartOf="@id/cardView"
+        app:layout_constraintTop_toBottomOf="@id/btnSubmit" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupTakePhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="layoutTakePhoto,btnFlash"
+        tools:visibility="invisible" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/groupSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:constraint_referenced_ids="btnSubmit,btnRetake"
+        tools:visibility="visible" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressIndicator"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:indeterminate="true"
+        app:hideAnimationBehavior="inward"
+        app:indicatorColor="#2F363D"
+        app:indicatorDirectionLinear="startToEnd"
+        app:layout_constraintBottom_toBottomOf="@id/btnSubmit"
+        app:layout_constraintEnd_toEndOf="@id/btnSubmit"
+        app:layout_constraintStart_toStartOf="@id/btnSubmit"
+        app:layout_constraintTop_toTopOf="@id/btnSubmit"
+        app:showAnimationBehavior="outward"
+        app:trackCornerRadius="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
