@@ -57,17 +57,14 @@ class CapturePhotoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (allPermissionsGranted()) {
-            openCamera()
-        } else {
-            permissionsLauncher.launch(REQUIRED_PERMISSIONS.toTypedArray())
-        }
+        tryOpenCamera()
 
         binding.btnTakePhoto.setOnClickListener {
-            capturePhoto {
-                binding.ivPreview.setImageBitmap(it)
-                enableSubmitView()
-            }
+//            capturePhoto {
+//                binding.ivPreview.setImageBitmap(it)
+//                enableSubmitView()
+//            }
+            takePhotoWithFile()
         }
 
         binding.progressIndicator.hide()
@@ -84,6 +81,14 @@ class CapturePhotoFragment : Fragment() {
 
         binding.btnFlash.setOnClickListener {
             decideTorchState()
+        }
+    }
+
+    private fun tryOpenCamera() {
+        if (allPermissionsGranted()) {
+            openCamera()
+        } else {
+            permissionsLauncher.launch(REQUIRED_PERMISSIONS.toTypedArray())
         }
     }
 
@@ -180,7 +185,7 @@ class CapturePhotoFragment : Fragment() {
 
     private fun takePhotoWithFile() {
 
-        val photoFile = File(requireContext().filesDir, "Nrc.jpg")
+        val photoFile = File(requireContext().filesDir, "camerax-sample.jpg")
 
         val outputOptions = ImageCapture.OutputFileOptions
             .Builder(photoFile)
@@ -199,6 +204,7 @@ class CapturePhotoFragment : Fragment() {
                     Toast.makeText(requireContext(), output.savedUri.toString(), Toast.LENGTH_SHORT)
                         .show()
 
+                    binding.ivPreview.setImageURI(null)
                     binding.ivPreview.setImageURI(output.savedUri)
                     enableSubmitView()
                 }

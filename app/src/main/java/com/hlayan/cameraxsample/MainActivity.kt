@@ -16,7 +16,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportFragmentManager.commit {
-            add(binding.container.id, CaptureVideoFragment())
+            add(binding.container.id, CapturePhotoFragment())
+//            add(binding.container.id, CaptureVideoFragment())
         }
     }
 }
