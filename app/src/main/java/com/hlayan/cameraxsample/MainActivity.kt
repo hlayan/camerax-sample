@@ -2,7 +2,6 @@ package com.hlayan.cameraxsample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commit
 import com.hlayan.cameraxsample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -15,9 +14,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-        supportFragmentManager.commit {
-            add(binding.container.id, CapturePhotoFragment())
-//            add(binding.container.id, CaptureVideoFragment())
-        }
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.add(binding.container.id, CapturePhotoFragment())
+        transaction.commit()
     }
 }
