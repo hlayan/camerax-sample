@@ -5,6 +5,7 @@ plugins {
 
 android {
     compileSdk 33
+    namespace 'com.hlayan.cameraxsample'
 
     defaultConfig {
         applicationId "com.hlayan.cameraxsample"
@@ -34,11 +35,11 @@ android {
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.9.0'
-    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.appcompat:appcompat:1.6.0'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
-    def camerax_version = "1.1.0"
+    def camerax_version = "1.2.0"
     implementation "androidx.camera:camera-core:${camerax_version}"
     implementation "androidx.camera:camera-view:${camerax_version}"
     implementation "androidx.camera:camera-lifecycle:${camerax_version}"
